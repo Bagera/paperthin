@@ -46,15 +46,27 @@ module.exports = function (grunt)
 	{
 		// merge format.html into format.json
 
-		var formatJson = grunt.file.readJSON('format.json');
-		formatJson.source = grunt.file.read('format.html');
+		const pkg = grunt.file.readJSON('package.json');
+		const template = grunt.file.read('format.html');
 
-		grunt.file.write('dist/' + formatJson.name + '/format.js', 'window.storyFormat(' + JSON.stringify(formatJson) + ');');
+		const formatData = {
+			name: pkg.name,
+			version: pkg.version,
+			description: pkg.description,
+			author: pkg.author.replace(/ <.*>/, ''),
+			image: 'icon.svg',
+			url: pkg.repository,
+			license: pkg.license, 
+			proofing: true,
+			source: template,
+		}
+
+		grunt.file.write('dist/' + pkg.name + '/format.js', 'window.storyFormat(' + JSON.stringify(formatData) + ');');
 
 		// if an image is set, copy that too
 
-		if (formatJson.image)
-			grunt.file.copy(formatJson.image, 'dist/' + formatJson.name + '/' + formatJson.image);
+		if (pkg.image)
+			grunt.file.copy(pkg.image, 'dist/' + pkg.name + '/' + pkg.image);
 	});
 
 	grunt.loadNpmTasks('grunt-bake');

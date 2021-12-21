@@ -1,8 +1,12 @@
 <!DOCTYPE html>
-<html>
-<head>
-<title>{{STORY_NAME}}
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>{{STORY_NAME}}
 </title>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 <meta charset="utf-8">
 <style>
 body
@@ -23,6 +27,22 @@ tw-storydata
 	display: block !important;
 }
 
+tw-tag
+{
+	--tag-color: "black"
+	display: inline-block;
+	color: white;
+	background-color: black;
+}
+tw-tag::after
+{
+	display: inline-block;
+	content: attr(name);
+	padding: 0.25em;
+	border-radius: 0.25em;
+	color: currentColor;
+	background-color: var(--tag-color);
+}
 tw-passagedata
 {
 	display: block !important;
@@ -52,6 +72,22 @@ tw-passagedata:before
 </h1>
 {{STORY_DATA}}
 
+
+<script>
+	window.onload = function () {
+		const tags = document.querySelectorAll("tw-tag");
+		const passages = document.querySelectorAll("tw-passage");
+
+		tags.forEach((tag) => {
+			console.log(tag);
+			tag.style.setProperty("--tag-color", tag.getAttribute("color"));
+		});
+
+		passages.forEach((passage) => {
+			passage.innerHTML = marked.parse(passage.innerHTML);
+		});
+	};
+</script>
 
 </body>
 </html>

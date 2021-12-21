@@ -1,7 +1,11 @@
 <!DOCTYPE html>
-<html>
-<head>
-<title><!--(bake /data/name_test.txt _if="test")--><!--(bake /data/name_release.txt _if="!test")--></title>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title><!--(bake /data/name_test.txt _if="test")--><!--(bake /data/name_release.txt _if="!test")--></title>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 <meta charset="utf-8">
 <style>
 body
@@ -17,6 +21,27 @@ h1
 	margin-bottom: 2em;
 }
 
+tw-storydata
+{
+	display: block !important;
+}
+
+tw-tag
+{
+	--tag-color: "black"
+	display: inline-block;
+	color: white;
+	background-color: black;
+}
+tw-tag::after
+{
+	display: inline-block;
+	content: attr(name);
+	padding: 0.25em;
+	border-radius: 0.25em;
+	color: currentColor;
+	background-color: var(--tag-color);
+}
 tw-passagedata
 {
 	display: block !important;
@@ -45,6 +70,22 @@ tw-passagedata:before
 <h1><!--(bake /data/name_test.txt _if="test")--><!--(bake /data/name_release.txt _if="!test")--></h1>
 
 <!--(bake /data/passages_test.html _if="test")--><!--(bake /data/passages_release.html _if="!test")-->
+
+<script>
+	window.onload = function () {
+		const tags = document.querySelectorAll("tw-tag");
+		const passages = document.querySelectorAll("tw-passage");
+
+		tags.forEach((tag) => {
+			console.log(tag);
+			tag.style.setProperty("--tag-color", tag.getAttribute("color"));
+		});
+
+		passages.forEach((passage) => {
+			passage.innerHTML = marked.parse(passage.innerHTML);
+		});
+	};
+</script>
 
 </body>
 </html>

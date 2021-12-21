@@ -1,8 +1,8 @@
 {
-  "name": "storyformatskeleton",
+  "name": "SnowProof",
   "version": "1.0.0",
-  "description": "A skeleton for Twine 2 story formats",
-  "author": "Chris Klimas <chris@twinery.org>",
+  "description": "A proofing format for SnowMan",
+  "author": "Victor Baquero Wihlborg <dev@vbw.se>",
   "license": "Public Domain",
   "dependencies": {
     "grunt": "^0.4.5",
