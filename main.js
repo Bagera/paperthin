@@ -36,22 +36,34 @@ function createTagFilter() {
 
 function renderPassages() {
   const passageData = document.querySelectorAll("tw-passagedata");
+  const passageList = document.querySelector(".passages");
 
   passageData.forEach((passage) => {
+    const passageTags = passage.getAttribute("tags") ? passage.getAttribute("tags").split(" ") : [];
     const listItem = document.createElement("li");
     listItem.classList.add("passage");
-    const passageAside = document.createElement("aside");
-    const passageTags = passage.getAttribute("tags") ? passage.getAttribute("tags").split(" ") : [];
-    console.log(passageTags);
-
-    passageAside.innerHTML = `
-    <h2 class="passageAside-title">Passage: ${passage.getAttribute("name")}</h2>
-    <ul class="passageAside-tags">
-    ${passageTags.map(tag => `<li class="tag tag-${tagMap[tag]}">${tag}</li>`).join("")}
-    </ul>
+    
+    listItem.innerHTML = `
+    <h2 class="passage-title">Passage: ${passage.getAttribute("name")}</h2>
+    <aside class="passage-meta">
+      <dl>
+        <dt>Id</dt>
+        <dd>${passage.getAttribute("id")}</dd>
+        <dt>Position</dt>
+        <dd>${passage.getAttribute("position")}</dd>
+        <dt>Size</dt>
+        <dd>${passage.getAttribute("size")}</dd>
+        <dt>Tags</dt>
+        <dd>
+          <ul class="passage-tags">
+          ${passageTags.map(tag => `<li class="tag tag-${tagMap[tag]}">${tag}</li>`).join("")}
+          </ul>
+        </dd>
+      </dl>
+    </aside>
+    <section class="passage-content">${marked.parse(passage.textContent)}</section>
     `
-    passage.innerHTML = marked.parse(passage.innerHTML);
-    passage.prepend(passageAside);
+    passageList.append(listItem);
   
   });
   
@@ -61,6 +73,6 @@ window.onload = function () {
 
 
   createTagFilter();
-  
+  renderPassages();
 
 };

@@ -72,11 +72,11 @@ body
   border-color: var(--c-purple);
 }
 
-tw-storydata
-{
-	display: block;
-  color:transparent;
+main {
+  max-width: 40em;
+  margin: 0 auto;
 }
+
 
 .tag
 {
