@@ -1,7 +1,7 @@
 const tagMap = {};
 
 function filterPassages(term) {
-  const passages = document.querySelectorAll("tw-passagedata");
+  const passages = document.querySelectorAll(".passage");
 
   passages.forEach((passage) => {
     const passageTags = passage.getAttribute("tags") ? passage.getAttribute("tags").split(" ") : [];
@@ -42,6 +42,7 @@ function renderPassages() {
     const passageTags = passage.getAttribute("tags") ? passage.getAttribute("tags").split(" ") : [];
     const listItem = document.createElement("li");
     listItem.classList.add("passage");
+    listItem.setAttribute("tags", passage.getAttribute("tags"))
     
     listItem.innerHTML = `
     <h2 class="passage-title">Passage: ${passage.getAttribute("name")}</h2>
