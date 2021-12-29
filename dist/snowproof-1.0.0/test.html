@@ -4,45 +4,59 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		
-		<title>An Unreasonably Long Title That Tests The Limits of Everyone's Patience
-</title>
-    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-		<style>:root {
-  --c-text: #232323;
-  --c-gray: gray;
-  --c-red: red;
-  --c-orange: orange;
-  --c-yellow: yellow;
-  --c-green: green;
-  --c-blue: blue;
-  --c-purple: purple;
 
-  --f-body: monospace;
+    <title>An Unreasonably Long Title That Tests The Limits of Everyone's Patience</title>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <style>
+			:root {
+  --c-text: #232323;
+  --c-gray: rgb(153,153,153);
+  --c-red: rgb(194,10,10);
+  --c-orange: rgb(194,87,10);
+  --c-yellow: rgb(194,163,10);
+  --c-green: rgb(10,194,71);
+  --c-blue: rgb(10, 96, 194);
+  --c-purple: rgb(108, 10, 194);
+
+  --f-body: Arial, Helvetica, sans-serif;
+
+  --col-width: 40em;
 }
 html {
   box-sizing: border-box;
 }
-*, *:before, *:after {
+*,
+*:before,
+*:after {
   box-sizing: inherit;
 }
 
-body
-{
-	font-family: var(--f-body);
-	padding: 1em;
+body {
+  font-family: var(--f-body);
+  padding: 1em;
   margin: 0;
 }
 
-.storyTitle
-{
-	text-align: center;
-	margin-bottom: 2em;
+.pageSection {
+  width: var(--col-width);
+  max-width: 100%;
+  margin: 0 auto;
 }
 
+.storyTitle {
+  text-align: center;
+  margin-bottom: 2em;
+}
+
+.tagFilter-title {
+  margin: 0 0 0.25em;
+}
 .tagFilter-list {
-  margin: 1em 0;
+  margin: 0;
   padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5em;
 }
 
 .tagFilter-tag {
@@ -51,35 +65,51 @@ body
 }
 
 .tagFilter-button {
+  font-size: 0.75em;
   font-family: var(--f-body);
   color: var(--c-text);
   display: inline-block;
   padding: 0.125em 0.5em 0.25em;
-  border-radius: 0.25em;
-  border: 2px solid currentColor;
+  border: 1px solid currentColor;
+  border-bottom-width: 2px;
   background: transparent;
   cursor: pointer;
+  background-color: rgba(0, 0, 0, 0.1);
+  width: 100%;
 }
-.tagFilter-tag_gray .tagFilter-button {
-  border-color: var(--c-gray);
+.tagFilter-button[selected] {
+  border-top-width: 2px;
+  border-bottom-width: 1px;
 }
-.tagFilter-tag_red .tagFilter-button {
-  border-color: var(--c-red);
+.tagFilter-button[inactive] {
+  opacity: 0.5;
 }
-.tagFilter-tag_orange .tagFilter-button {
-  border-color: var(--c-orange);
+.tagFilter-button .icon {
+  width: 1em;
+  margin-right: 0.25em;
+  height: auto;
+  vertical-align: middle;
 }
-.tagFilter-tag_yellow .tagFilter-button {
-  border-color: var(--c-yellow);
+.tagFilter-tag_gray .icon {
+  fill: var(--c-gray);
 }
-.tagFilter-tag_green .tagFilter-button {
-  border-color: var(--c-green);
+.tagFilter-tag_red .icon {
+  fill: var(--c-red);
 }
-.tagFilter-tag_blue .tagFilter-button {
-  border-color: var(--c-blue);
+.tagFilter-tag_orange .icon {
+  fill: var(--c-orange);
 }
-.tagFilter-tag_purple .tagFilter-button {
-  border-color: var(--c-purple);
+.tagFilter-tag_yellow .icon {
+  fill: var(--c-yellow);
+}
+.tagFilter-tag_green .icon {
+  fill: var(--c-green);
+}
+.tagFilter-tag_blue .icon {
+  fill: var(--c-blue);
+}
+.tagFilter-tag_purple .icon {
+  fill: var(--c-purple);
 }
 
 main {
@@ -87,94 +117,80 @@ main {
   margin: 0 auto;
 }
 
-
-.tag
-{
-	color: var(--c-text);
-  display: inline-block;
-  padding: 0.125em 0.5em 0.25em;
-  border-radius: 0.25em;
-  border: 2px solid currentColor;
-  margin-right: 0.5em;
+.tag {
+  color: var(--c-text);
 }
-tw-tag::after
-{
-	content: attr(name);
+.tag .icon{
+  height: 1em;
+  width: auto;
+  margin-right: 0.25em;
+  vertical-align: middle;
 }
 .tag-gray {
-  border-color: var(--c-gray);
+  fill: var(--c-gray);
 }
 .tag-red {
-  border-color: var(--c-red);
+  fill: var(--c-red);
 }
 .tag-orange {
-  border-color: var(--c-orange);
+  fill: var(--c-orange);
 }
 .tag-yellow {
-  border-color: var(--c-yellow);
+  fill: var(--c-yellow);
 }
 .tag-green {
-  border-color: var(--c-green);
+  fill: var(--c-green);
 }
 .tag-blue {
-  border-color: var(--c-blue);
+  fill: var(--c-blue);
 }
 .tag-purple {
-  border-color: var(--c-purple);
+  fill: var(--c-purple);
 }
 
-.passageAside-tags {
-  margin: 1em 0;
+.passages {
+  margin: 0;
   padding: 0;
+  list-style: none;
 }
-tw-passagedata
-{
-  color: var(--c-text);
-	display: block;
-	margin-bottom: 2em;
-}
-tw-passagedata[hidden]
-{
+
+.passage[text-hidden],
+.passage[tag-hidden] {
   display: none;
 }
 
-tw-passagedata + tw-passagedata::before
-{
-  width: 50%;
-	border-top: 1pt dashed black;
-	padding-top: 2em;
-  height: 2em;
+.passage-meta{
+  margin: 1em 0;
+  padding: 0;
+  font-size: 0.75em;
+}
+.passage-meta p{
+  margin: 0;
 }
 
-tw-passagedata:before
-{
-	content: attr(name);
-	display: block;
-	font-weight: bold;
-}
+    </style>
+  </head>
 
-
-tw-tag {
-
-}</style>
-</head>
-
-<body>
-	<header>
-		<h1 class="storyTitle">An Unreasonably Long Title That Tests The Limits of Everyone's Patience
-</h1>
-	</header>
-	<aside>
-		<div class="tagFilter">
-			<p class="tagFilter-title">Filter by tag:</p>
-			<ul class="tagFilter-list">
-			</ul>
-		</div>
-	</aside>
-	<main>
-		<ul class="passages">
-		</ul>
-<tw-storydata name="jtr-map-test" startnode="1" creator="Twine" creator-version="2.3.15"
+  <body>
+    <header class="pageHeader pageSection">
+      <h1 class="pageHeader-title">
+        An Unreasonably Long Title That Tests The Limits of Everyone's Patience
+      </h1>
+			<p class="pageHeader-description">Rendered with: snowproof, version 1.0.0</p>
+    </header>
+    <aside class="filters pageSection">
+      <div class="tagFilter">
+        <p class="tagFilter-title">Filter by tag:</p>
+        <ul class="tagFilter-list"></ul>
+      </div>
+      <div class="textFilter">
+        <p class="textFilter-title">Filter by text:</p>
+        <input class="textFilter-input" type="search"/>
+      </div>
+    </aside>
+    <main class="pageSection">
+      <ul class="passages"></ul>
+      <tw-storydata name="jtr-map-test" startnode="1" creator="Twine" creator-version="2.3.15"
   ifid="D1702246-665D-4839-B4CB-175FF81147FE" zoom="0.6" format="SugarCube" format-version="2.34.1" options=""
   hidden="">
   <style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css"></style>
@@ -186,7 +202,7 @@ tw-tag {
   <tw-tag name="tag-5" color="green"></tw-tag>,
   <tw-tag name="tag-6" color="blue"></tw-tag>,
   <tw-tag name="tag-7" color="purple"></tw-tag>
-  <tw-passagedata pid="1" name="Start" tags="tag-1 tag-2 tag-3 tag-4">
+  <tw-passagedata pid="1" name="Start" tags="tag-1 tag-2 tag-3 tag-4" position="0,0" size="100,100">
 Twine 2 follows Markdown syntax. This means *italics*, **bold**, and `code()`.
 
 &gt; Everything can change, but not the language that we carry inside us, like a
@@ -221,7 +237,7 @@ These are external links: [[http://twinery.org]], [[foo|http://twinery.org]], [[
 These are broken links: [[Nope]], [[foo|Nope]], [[bar-&gt;Nope]], [[Nope&lt;-baz]]
 </tw-passagedata>
 
-<tw-passagedata pid="2" name="Other Passage" tags="tag-4 tag-5 tag-6 tag-7">
+<tw-passagedata pid="2" name="Other Passage" tags="tag-4 tag-5 tag-6 tag-7" position="50,50" size="200,200">
 # Heading 1
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed in gravida lectus. Morbi vitae facilisis velit.
@@ -249,7 +265,7 @@ fames ac turpis egestas. Class aptent taciti sociosqu ad litora torquent per con
 Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Cras dapibus luctus velit et
 lobortis. Vestibulum vestibulum posuere felis sed aliquam.
 
- Heading 4
+#### Heading 4
 
 Fusce adipiscing mauris a tempus vestibulum. Sed dolor mi, viverra sed facilisis at, semper in nisi. Integer ante
 dolor, placerat in felis ut, ultricies pellentesque est. Sed non nisl eu nunc rutrum faucibus in eget ligula.
@@ -260,7 +276,7 @@ ac turpis egestas. In condimentum mauris ipsum, in faucibus leo scelerisque ac. 
 pulvinar. Donec mollis faucibus dui eget porta. Nullam ipsum nibh, pulvinar eget auctor sed, tempor quis lectus. Ut
 pellentesque nisi vel fermentum venenatis.
 
-# Heading 5
+##### Heading 5
 
 Aliquam lectus tellus, egestas a posuere bibendum, accumsan id nunc. Curabitur eget luctus arcu. Aenean fermentum
 euismod libero, eu auctor libero pulvinar id. Sed elementum vitae nibh eu viverra. Nulla purus odio, condimentum non
@@ -271,31 +287,73 @@ sed nisi. Praesent suscipit vehicula magna id ornare. Aliquam fermentum diam era
 eu. Nunc pharetra elit id urna semper volutpat. Maecenas erat tortor, hendrerit ac facilisis ut, euismod tristique
 justo.
 
-## Heading 6
+###### Heading 6
 
 Proin sagittis sem quis ullamcorper tempus. Nulla eget gravida dui. Aliquam ornare et eros eget vestibulum. Morbi
 vitae congue risus. Pellentesque porta sem a nunc aliquam, nec feugiat lacus lacinia. Praesent tristique, lectus
 eget posuere mollis, sem nisi sollicitudin mauris, at tristique est ligula id augue. Suspendisse vel arcu eget dui
 ornare ornare non et mi. Aliquam et elit ut sem viverra molestie. In hac habitasse platea dictumst. Etiam iaculis
 est nibh. Nam vehicula vel mi eget aliquet.
-  </tw-passagedata>
+</tw-passagedata>
 </tw-storydata>
-	</main>
-	<script>
-const tagMap = {};
+    </main>
+    <script>
+      const tagMap = {};
+const icons = {
+  tag: `<svg class="icon icon-tag" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+          <path
+            d="M15.09,7.12,8.88.91a1.6,1.6,0,0,0-1-.41h-6A1.41,1.41,0,0,0,.5,1.91v6a1.6,1.6,0,0,0,.41,1l6.21,6.21a1.41,1.41,0,0,0,2,0l6-6A1.41,1.41,0,0,0,15.09,7.12ZM4,5.42A1.41,1.41,0,1,1,5.42,4,1.41,1.41,0,0,1,4,5.42Z" />
+        </svg>`,
+  search: `<svg class="icon icon-search" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+            <path
+              d="M15.4,14.73l-.67.67a.36.36,0,0,1-.49,0l-3.56-3.56a.37.37,0,0,1-.1-.25V11.2a6.11,6.11,0,1,1,.62-.62h.39a.33.33,0,0,1,.25.1l3.56,3.56A.36.36,0,0,1,15.4,14.73ZM11.28,6.59a4.69,4.69,0,1,0-4.69,4.69A4.68,4.68,0,0,0,11.28,6.59Z" />
+          </svg>`,
+};
+const SHOWALL = "showAllTags";
 
 function filterPassages(term) {
   const passages = document.querySelectorAll(".passage");
+  const tags = document.querySelectorAll(".tagFilter-button");
+
+  if (term === SHOWALL) {
+    tags.forEach((tag) => {
+      tag.removeAttribute("selected");
+      tag.removeAttribute("inactive");
+    });
+  } else {
+    tags.forEach((tag) => {
+      if (tag.dataset["tag"] === term) {
+        tag.setAttribute("selected", true);
+        tag.removeAttribute("inactive");
+      } else {
+        tag.setAttribute("inactive", true);
+        tag.removeAttribute("selected");
+      }
+    });
+  }
 
   passages.forEach((passage) => {
-    const passageTags = passage.getAttribute("tags") ? passage.getAttribute("tags").split(" ") : [];
-    if(term === "showAllTags" || passageTags.includes(term)) {
-      passage.removeAttribute("hidden")
-    }
-    else {
-      passage.setAttribute("hidden", true)
+    const passageTags = passage.getAttribute("tags")
+      ? passage.getAttribute("tags").split(" ")
+      : [];
+    if (term === "showAllTags" || passageTags.includes(term)) {
+      passage.removeAttribute("tag-hidden");
+    } else {
+      passage.setAttribute("tag-hidden", true);
     }
   });
+}
+
+function handleFilterClick(e) {
+  let button = e.target;
+  let term = SHOWALL;
+  if (!button.classList.contains("tagFilter-button")) {
+    button = button.closest(".tagFilter-button");
+  }
+  if (!button.getAttribute("selected")) {
+    term = button.dataset.tag;
+  }
+  filterPassages(term);
 }
 
 function createTagFilter() {
@@ -303,19 +361,16 @@ function createTagFilter() {
   const tagList = document.querySelector(".tagFilter-list");
 
   tags.forEach((tag) => {
-    const tagName = tag.getAttribute("name")
+    const tagName = tag.getAttribute("name");
     const tagItem = document.createElement("li");
 
     tagMap[tagName] = tag.getAttribute("color");
     tagItem.textContent = tagMap[tagName];
-    tagItem.innerHTML = `<button class="tagFilter-button" data-tag="${tagName}">${tagName}</button>`;
+    tagItem.innerHTML = `<button class="tagFilter-button" data-tag="${tagName}">${icons.tag}${tagName}</button>`;
     tagItem.classList.add("tagFilter-tag", "tagFilter-tag_" + tagMap[tagName]);
     tagList.append(tagItem);
   });
-  tagList.addEventListener("click", (e) => {
-    console.log(e.target);
-    filterPassages(e.target.dataset.tag)
-  })
+  tagList.addEventListener("click", handleFilterClick);
 }
 
 function renderPassages() {
@@ -323,44 +378,53 @@ function renderPassages() {
   const passageList = document.querySelector(".passages");
 
   passageData.forEach((passage) => {
-    const passageTags = passage.getAttribute("tags") ? passage.getAttribute("tags").split(" ") : [];
+    console.log(passage);
+    const passageTags = passage.getAttribute("tags")
+      ? passage.getAttribute("tags").split(" ")
+      : [];
     const listItem = document.createElement("li");
     listItem.classList.add("passage");
-    listItem.setAttribute("tags", passage.getAttribute("tags"))
-    
+    listItem.setAttribute("tags", passage.getAttribute("tags"));
+
     listItem.innerHTML = `
     <h2 class="passage-title">Passage: ${passage.getAttribute("name")}</h2>
     <aside class="passage-meta">
-      <dl>
-        <dt>Id</dt>
-        <dd>${passage.getAttribute("id")}</dd>
-        <dt>Position</dt>
-        <dd>${passage.getAttribute("position")}</dd>
-        <dt>Size</dt>
-        <dd>${passage.getAttribute("size")}</dd>
-        <dt>Tags</dt>
-        <dd>
-          <ul class="passage-tags">
-          ${passageTags.map(tag => `<li class="tag tag-${tagMap[tag]}">${tag}</li>`).join("")}
-          </ul>
-        </dd>
-      </dl>
+      <p>Id: ${passage.getAttribute("pid")}, Position: ${passage.getAttribute("position")}, Size: ${passage.getAttribute("size")}, Tags: ${passageTags
+        .map((tag) => `<span class="tag tag-${tagMap[tag]}">${icons.tag}${tag}</span>`)
+        .join(", ")}</p>
     </aside>
-    <section class="passage-content">${marked.parse(passage.textContent)}</section>
-    `
+    <section class="passage-content">${marked.parse(
+      passage.textContent
+    )}</section>
+    `;
     passageList.append(listItem);
-  
   });
-  
+}
+
+function filterByText(e) {
+  const passages = document.querySelectorAll(".passage");
+  passages.forEach((passage) => {
+    if (passage.innerHTML.toLowerCase().includes(e.target.value.toLowerCase())) {
+      passage.removeAttribute("text-hidden");
+    } else {
+      passage.setAttribute("text-hidden", true);
+    }
+  });
+  console.log(e.target.value);
+}
+
+function bindTextFilter() {
+  const input = document.querySelector(".textFilter-input");
+  input.addEventListener("input", filterByText)
+
 }
 
 window.onload = function () {
-
-
   createTagFilter();
   renderPassages();
-
+  bindTextFilter();
 };
-	</script>
-</body>
+
+    </script>
+  </body>
 </html>

@@ -1,0 +1,159 @@
+:root {
+  --c-text: #232323;
+  --c-gray: rgb(153,153,153);
+  --c-red: rgb(194,10,10);
+  --c-orange: rgb(194,87,10);
+  --c-yellow: rgb(194,163,10);
+  --c-green: rgb(10,194,71);
+  --c-blue: rgb(10, 96, 194);
+  --c-purple: rgb(108, 10, 194);
+
+  --f-body: Arial, Helvetica, sans-serif;
+
+  --col-width: 40em;
+}
+html {
+  box-sizing: border-box;
+}
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+body {
+  font-family: var(--f-body);
+  padding: 1em;
+  margin: 0;
+}
+
+.pageSection {
+  width: var(--col-width);
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+.storyTitle {
+  text-align: center;
+  margin-bottom: 2em;
+}
+
+.tagFilter-title {
+  margin: 0 0 0.25em;
+}
+.tagFilter-list {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5em;
+}
+
+.tagFilter-tag {
+  display: inline-block;
+  margin-right: 0.5em;
+}
+
+.tagFilter-button {
+  font-size: 0.75em;
+  font-family: var(--f-body);
+  color: var(--c-text);
+  display: inline-block;
+  padding: 0.125em 0.5em 0.25em;
+  border: 1px solid currentColor;
+  border-bottom-width: 2px;
+  background: transparent;
+  cursor: pointer;
+  background-color: rgba(0, 0, 0, 0.1);
+  width: 100%;
+}
+.tagFilter-button[selected] {
+  border-top-width: 2px;
+  border-bottom-width: 1px;
+}
+.tagFilter-button[inactive] {
+  opacity: 0.5;
+}
+.tagFilter-button .icon {
+  width: 1em;
+  margin-right: 0.25em;
+  height: auto;
+  vertical-align: middle;
+}
+.tagFilter-tag_gray .icon {
+  fill: var(--c-gray);
+}
+.tagFilter-tag_red .icon {
+  fill: var(--c-red);
+}
+.tagFilter-tag_orange .icon {
+  fill: var(--c-orange);
+}
+.tagFilter-tag_yellow .icon {
+  fill: var(--c-yellow);
+}
+.tagFilter-tag_green .icon {
+  fill: var(--c-green);
+}
+.tagFilter-tag_blue .icon {
+  fill: var(--c-blue);
+}
+.tagFilter-tag_purple .icon {
+  fill: var(--c-purple);
+}
+
+main {
+  max-width: 40em;
+  margin: 0 auto;
+}
+
+.tag {
+  color: var(--c-text);
+}
+.tag .icon{
+  height: 1em;
+  width: auto;
+  margin-right: 0.25em;
+  vertical-align: middle;
+}
+.tag-gray {
+  fill: var(--c-gray);
+}
+.tag-red {
+  fill: var(--c-red);
+}
+.tag-orange {
+  fill: var(--c-orange);
+}
+.tag-yellow {
+  fill: var(--c-yellow);
+}
+.tag-green {
+  fill: var(--c-green);
+}
+.tag-blue {
+  fill: var(--c-blue);
+}
+.tag-purple {
+  fill: var(--c-purple);
+}
+
+.passages {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.passage[text-hidden],
+.passage[tag-hidden] {
+  display: none;
+}
+
+.passage-meta{
+  margin: 1em 0;
+  padding: 0;
+  font-size: 0.75em;
+}
+.passage-meta p{
+  margin: 0;
+}

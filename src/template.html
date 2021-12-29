@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>{{name}}</title>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <style>
+			{{css}}
+    </style>
+  </head>
+
+  <body>
+    <header class="pageHeader pageSection">
+      <h1 class="pageHeader-title">
+        {{name}}
+      </h1>
+			<p class="pageHeader-description">Rendered with: {{pkg.name}}, version {{pkg.version}}</p>
+    </header>
+    <aside class="filters pageSection">
+      <div class="tagFilter">
+        <p class="tagFilter-title">Filter by tag:</p>
+        <ul class="tagFilter-list"></ul>
+      </div>
+      <div class="textFilter">
+        <p class="textFilter-title">Filter by text:</p>
+        <input class="textFilter-input" type="search"/>
+      </div>
+    </aside>
+    <main class="pageSection">
+      <ul class="passages"></ul>
+      {{data}}
+    </main>
+    <script>
+      {{js}}
+    </script>
+  </body>
+</html>
